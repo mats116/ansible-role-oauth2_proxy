@@ -1,0 +1,8 @@
+- name: modify supervisor config
+  template:
+    src: supervisor/oauth2_proxy.conf
+    dest: /etc/supervisor/conf.d/oauth2_proxy.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart supervisor

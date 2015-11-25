@@ -1,0 +1,28 @@
+- name: install unzip
+  apt:
+    name: unzip
+    state: latest
+    force: yes
+
+- name: create directory
+  file:
+    path: /etc/oauth2_proxy/bin
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: yes
+
+- name: unzip oauth2_proxy
+  unarchive:
+    src: "oauth2_proxy-{{ oauth2_proxy_version }}.zip"
+    dest: /etc/oauth2_proxy/bin
+    creates: "/etc/oauth2_proxy/bin/oauth2_proxy-{{ oauth2_proxy_version }}"
+
+- name: create symlink
+  file:
+    src: "/etc/oauth2_proxy/bin/oauth2_proxy-{{ oauth2_proxy_version }}"
+    dest: /usr/local/bin/oauth2_proxy
+    state: link
+
+- include: supervisor.yml

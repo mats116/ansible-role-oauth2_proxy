@@ -1,2 +1,14 @@
+galaxy_info:
+  author: mats116
+  description: "oauth2_proxy installer"
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - oauth2
+    - golang
 dependencies:
-  - role: supervisor
+  - role: mats116.supervisor
